@@ -113,43 +113,43 @@
         </div>
     </section>
 
-    <section class="bg-white">
+   <section class="bg-white">
         <div class="container">
             <h1 class="text-center my-3" id="contact">Contact Me</h1>
             <div class="row">
                 <div class="col-md-6">
-                    <form>
+                    <form name="google-sheet" method="POST" autocomplete="off">
 
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Email address</label>
                             <input type="email" class="form-control" id="exampleFormControlInput1"
-                                placeholder="id@example.com">
+                                placeholder="id@example.com" name="Email">
                         </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="nameinput">Full Name</label>
-                        <input type="text" class="form-control" placeholder="Full Name">
+                        <input type="text" class="form-control" placeholder="Full Name" name="Name">
                     </div>
                 </div>
             </div>
             <div class="row my-3">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="nameinput">Mobile Number</label>
-                        <input type="text" class="form-control" placeholder="Mobile Number">
+                        <label for="nameinput">Mobile Number (With Internationel Code)</label>
+                        <input type="text" class="form-control" placeholder="Enter your Whatsapp Number" name="Mobile">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="nameinput">Place</label>
-                        <input type="text" class="form-control" placeholder="Place">
+                        <input type="text" class="form-control" placeholder="Place" name="Place">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Message</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
-                        placeholder="type your message..."></textarea>
+                        placeholder="type your message..." name="Description"></textarea>
                 </div>
                 <button class="btn btn-primary my-4">Submit</button>
                 </form>
@@ -175,6 +175,20 @@
             </div>
         </div>
     </footer>
+
+
+<!-- Form Submit JavaScript -->
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxh-xhu0AAkqr9o1hkR8A6l9TYLX2wfb6dXqBzsiE8z37XUH0t1hGhtah-GcIZtkWTvcg/exec'
+        const form = document.forms['google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => alert("Thanks for Contacting..We will message soon..."))
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
